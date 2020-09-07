@@ -24,7 +24,7 @@ module.exports = {
         allowNull: true,
         type: Sequelize.DATE
       },
-      email: {
+      correo: {
         type: Sequelize.STRING
       },
       phone: {

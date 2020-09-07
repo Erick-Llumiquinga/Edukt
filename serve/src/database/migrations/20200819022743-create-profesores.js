@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      correoInstitucional: {
+      correo: {
         allowNull: true,
         type: Sequelize.STRING
       },

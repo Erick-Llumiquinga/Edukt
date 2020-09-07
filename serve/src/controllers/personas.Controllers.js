@@ -1,5 +1,5 @@
 const { Personas } = require('../models/index');
-
+const { Estudiantes } = require('../models/index');
 const  bcrypt = require ('bcrypt');
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
@@ -41,41 +41,68 @@ async function  crearPerson (req, res){
 }
 
 async function loginA (req, res) {
-    let { email, password } = req.body;
+    let correo = req.body.email
+    let clave = req.body.password
 
-    const prueba =   await Personas.findOne({
-        where: { email: email }
-    }).then(data => {
-        if (!data) {
-            res.status(404).json({
-                ok: false,
-                data: null,
-                msg: "Este correo no existe"
-             });
-        }else {
-            if(bcrypt.compareSync(password, data.password)) {
-
+    const prueba =   await Personas.findAll(/*{
+        where: { correo: correo }
+    }*/).then(data => {
+        console.log(data);
+        return res.status(200)
+        /*if (!data) {
+            this.validateData();*/
+        /*}else {
+            if(bcrypt.compareSync(clave, data.clave)) {
                 let token = jwt.sign({ person: data }, authConfig.secret , {
                     expiresIn: authConfig.expires
                 });
-
-                res.json({
+                return res.status(200).json({
                     ok: true,
                     data,
                     msg: "",
                     token: token
                 })
- 
             } else { 
-                res.status(401).json({
+                return res.status(401).json({
                     ok: false,
                     data: null,
                     msg: "Contraseña incorrecta"
                 })
-          }
-        }
+            }
+        }*/
     }).catch(error => {
-        res.status(400).json(error);
+        return res.status(400).json(error);
+    })
+}
+
+async function validateData (){
+    await Estudiantes.findOne({where: {correo: correo}})
+    .then(data => {
+        if(!data){
+            res.status(404).json({
+                ok: false,
+                data: null,
+                msg: "Este correo no existe"
+                });
+        } else {
+            if(bcrypt.compareSync(clave, data.clave)) {
+                let token = jwt.sign({ person: data }, authConfig.secret , {
+                    expiresIn: authConfig.expires
+                });
+                return res.status(200).json({
+                    ok: true,
+                    data,
+                    msg: "",
+                    token: token
+                });
+            } else { 
+                return res.status(401).json({
+                    ok: false,
+                    data: null,
+                    msg: "Contraseña incorrecta"
+                })
+            }
+        }
     })
 }
 

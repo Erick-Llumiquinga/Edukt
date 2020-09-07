@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Estudiantes.init({
-    correoEstudiantil: DataTypes.STRING,
+    correo: DataTypes.STRING,
     clave: DataTypes.STRING,
   }, {
     sequelize,

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
+import { MatCarouselSlide, MatCarouselSlideComponent } from '@ngmodule/material-carousel';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  img = '../assets/img/bg-Manhattan.png';
+  sl;
+
   constructor() { }
 
   ngOnInit(): void {
+   
   }
+
+ 
 
 }

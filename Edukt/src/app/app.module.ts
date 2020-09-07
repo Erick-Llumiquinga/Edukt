@@ -15,16 +15,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatTableModule} from '@angular/material/table';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 import { LoginComponent } from './login/login.component';
 import { NewStudentComponent } from './students/new-student/new-student.component';
@@ -71,10 +72,10 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     MatExpansionModule,
     MatSelectModule,
     NgxMatFileInputModule,
+    MatCarouselModule.forRoot(),
 
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
-    
   ],
   providers: [TokenGuard],
   bootstrap: [AppComponent]

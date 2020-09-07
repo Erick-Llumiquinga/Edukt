@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Profesores.init({
-    correoInstitucional: DataTypes.STRING,
+    correo: DataTypes.STRING,
     clave: DataTypes.STRING
   }, {
     sequelize,

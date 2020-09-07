@@ -79,7 +79,7 @@ module.exports = {
   
       queryInterface.bulkInsert('profesores', [
         { id: 1,
-          correoInstitucional: 'superAdmin@jarvis.com',
+          correo: 'superAdmin@jarvis.com',
           clave: bcrypt.hashSync('admin123456', 10),
           createdAt: new Date(), 
           updatedAt: new Date()
@@ -93,7 +93,7 @@ module.exports = {
           identification: '1750057729001', 
           address: 'Malibu',
           //birthDay: '2020/04/04',
-          email: 'admin@jarvis.com',
+          correo: 'admin@jarvis.com',
           phone: '0987654321',
           helpContact: '2683590',
           idRole: 1,  
