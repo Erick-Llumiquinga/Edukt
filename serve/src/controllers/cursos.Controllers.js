@@ -1,4 +1,4 @@
-const { Curso } = require('../models/index');
+const { Cursos } = require('../models/index');
 const  fs = require('fs-extra');
 const { unlink  }  = require('fs-extra');
 const  path = require('path');
@@ -24,7 +24,7 @@ async function show ( req, res) {
 async function crearCurso (req, res) {
     try {
               
-        await Curso.create({
+        await Cursos.create({
             nombre_curso : req.body.nombre_curso,
             paralelos: {
                 nombre_paralelo: req.body.nombre_paralelo
@@ -45,7 +45,7 @@ async function crearCurso (req, res) {
 
 async function verCursos (req, res) {
     try {
-        const curso = await Curso.findAll(
+        const curso = await Cursos.findAll(
             {
                 
                     include: {

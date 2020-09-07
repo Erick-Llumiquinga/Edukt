@@ -111,6 +111,6 @@ module.exports = {
       queryInterface.bulkDelete('roles', null, {}),
       queryInterface.bulkDelete('personas', null, {}),
      ])
-     
+
   }
 };

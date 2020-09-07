@@ -8,8 +8,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nombre_paralelo: {
+      paralelo: {
         type: Sequelize.STRING
+      },
+      idCurso:{
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'cursos',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
