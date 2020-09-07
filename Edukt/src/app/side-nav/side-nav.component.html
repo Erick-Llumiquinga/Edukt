@@ -1,0 +1,53 @@
+<div class="xl:h-full lg:h-full md:h-full h-full bg-skyBlue w-64 ocultar-div flex-initial">
+  <div class="w-full h-full ">
+    <h1 class="text-center text-white text-6xl font-bold mt-5">EDUKATE</h1>
+    <div class="h-auto w-2/5 text-center mt-4 mb-4   mx-auto rounded-full">
+      <img src="../../../assets/img/userIcon.png" alt="">
+    </div>
+    <div>
+      <mat-accordion>
+        <mat-selection-list class=" bg-whiteLight" [multiple]="false">
+          <mat-list-option routerLink="/inicio">
+            Inicio
+          </mat-list-option>
+          <mat-list-option routerLink="#">
+            Cursos
+          </mat-list-option>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false" class="bg-whiteLight text-white">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                 Usuarios
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-selection-list [multiple]="false">
+              <mat-list-option routerLink="/profesores/lista">
+                Profesores
+              </mat-list-option>
+              <mat-list-option routerLink="/estudiantes/lista">
+                Alumnos
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                              (closed)="panelOpenState = false" class="bg-whiteLight text-white">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Materias
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-selection-list [multiple]="false">
+            <mat-list-option routerLink="/profesores/lista">
+              Matematica
+            </mat-list-option>
+          </mat-selection-list>
+          </mat-expansion-panel>
+        </mat-selection-list>
+    </mat-accordion>
+    </div>
+    <div class="flex relative ">
+      <button class="bg-skyBlueLight mt-10 hover:bg-blue-600 mx-auto text-white font-bold py-2 px-4 rounded-full" (click)="signOut()"> Salir</button> 
+    </div>
+  </div>
+</div>
+

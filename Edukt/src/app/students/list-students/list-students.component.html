@@ -1,0 +1,42 @@
+<div class="flex w-full h-full flex-initial">
+  <div class="flex-initial w-full">
+      <div class="flex-col overflow-hidden w-full">
+          <h2 class="font-bold uppercase text-xl mt-8 ml-4">Lista Estudiantes</h2>
+          <div class="flex justify-end mt-5">
+              <button class="bg-greenWeedLight mr-4 hover:bg-greenWeed text-white font-bold py-2 px-4 rounded-full" routerLink="/estudiantes/nuevo">Crear Nuevo</button> 
+          </div>
+          <div class="mt-4 mx-4">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              </ng-container>
+            
+              <!-- Weight Column -->
+              <ng-container matColumnDef="lastname">
+                <th mat-header-cell *matHeaderCellDef> Apellido </th>
+                <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+              </ng-container>
+            
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="identification">
+                <th mat-header-cell *matHeaderCellDef> identificación </th>
+                <td mat-cell *matCellDef="let element"> {{element.identification}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Correo </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+
