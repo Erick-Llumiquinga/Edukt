@@ -37,6 +37,7 @@ import { ListTeachersComponent } from './teachers/list-teachers/list-teachers.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { CourseComponent } from './course/course.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     ListTeachersComponent,
     DashboardComponent,
     SideNavComponent,
+    CourseComponent,
   ],
   imports: [
     BrowserModule,

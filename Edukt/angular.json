@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "Edukt"
+  "defaultProject": "Edukt",
+  "cli": {
+    "analytics": "f61ae594-6f9e-48e3-8d90-3aeb2536a224"
+  }
 }
