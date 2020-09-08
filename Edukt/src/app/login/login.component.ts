@@ -40,12 +40,11 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.get('password').value
       }
       
-      this.loginForm.reset();
       this.services.login(data)
       .subscribe((resp: DataRx) => {
         if(resp.ok)
         {
-          console.log(resp.data);
+          this.loginForm.reset();
           sessionStorage.setItem('token', resp.token);
           let data = {
             name: `${resp.data['name']} ${resp.data['lastname']}`,

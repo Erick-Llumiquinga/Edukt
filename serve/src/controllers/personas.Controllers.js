@@ -1,5 +1,4 @@
-const { Personas } = require('../models/index');
-const { Estudiantes } = require('../models/index');
+const { Profesores, Estudiantes, Personas } = require('../models/index');
 const  bcrypt = require ('bcrypt');
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
@@ -44,14 +43,12 @@ async function loginA (req, res) {
     let correo = req.body.email
     let clave = req.body.password
 
-    const prueba =   await Personas.findAll(/*{
+    const prueba = await Profesores.findOne({
         where: { correo: correo }
-    }*/).then(data => {
-        console.log(data);
-        return res.status(200)
-        /*if (!data) {
-            this.validateData();*/
-        /*}else {
+    }).then(data => {
+        if (!data) {
+            validateData(correo, clave, res);
+        }else {
             if(bcrypt.compareSync(clave, data.clave)) {
                 let token = jwt.sign({ person: data }, authConfig.secret , {
                     expiresIn: authConfig.expires
@@ -69,17 +66,17 @@ async function loginA (req, res) {
                     msg: "Contraseña incorrecta"
                 })
             }
-        }*/
+        }
     }).catch(error => {
-        return res.status(400).json(error);
+        return res.status(500).json(error);
     })
 }
 
-async function validateData (){
+async function validateData(correo, clave, res){
     await Estudiantes.findOne({where: {correo: correo}})
     .then(data => {
         if(!data){
-            res.status(404).json({
+            return res.status(404).json({
                 ok: false,
                 data: null,
                 msg: "Este correo no existe"
@@ -164,7 +161,6 @@ async function editarPer (req, res){
 }
 
 module.exports = {
-
     crearPerson,
     loginA,
     verAll,

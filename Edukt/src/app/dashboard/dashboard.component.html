@@ -38,8 +38,26 @@
   </div>
   <div class="w-full p-2 mr-1 mb-2">
     <div class="w-full flex flex-wrap p-2 bg-whiteLight mr-0">
-      <div class="font-bold text-xl mb-2 p-2 w-full">Cursos Recientes</div>
-      <a>
+      <div class="font-bold text-xl mb-2 p-2 w-1/2">Mis Cursos</div>
+      <div class="w-1/2"> 
+        <mat-paginator [length]="length"
+          [pageSize]="pageSize"
+          (page)="pageEvent = $event">
+        </mat-paginator>
+      </div>
+      
+      <a class="mx-auto" *ngFor="let data of obs | async">
+        <div class="text-gray-700 text-center mx-auto bg p-2">
+          <div class="max-w-sm rounded overflow-hidden shadow-lg">
+            <img class="w-full" src="../../assets/img/bg-Manhattan.png" alt="Sunset in the mountains">
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2">{{data.title}}</div>
+              <p class="text-gray-700 text-base">{{data.text}}</p>
+            </div>
+          </div>
+        </div>
+      </a>
+      <!--<a>
         <div class="text-gray-700 text-center mx-auto bg p-2">
           <div class="max-w-sm rounded overflow-hidden shadow-lg">
             <img class="w-full" src="../../assets/img/bg-Manhattan.png" alt="Sunset in the mountains">
@@ -64,7 +82,7 @@
             </div>
           </div>
         </div>
-      </a>
+      </a>-->
       
     </div>
   </div>

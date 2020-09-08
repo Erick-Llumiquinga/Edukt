@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      correoEstudiantil: {
+      correo: {
         type: Sequelize.STRING
       },
       clave: {
@@ -18,6 +18,13 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'matriculas', 
+          key: 'id',
+        },
+      },
+      idPersona: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'personas', 
           key: 'id',
         },
       },

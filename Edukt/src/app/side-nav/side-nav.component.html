@@ -7,12 +7,20 @@
     <div>
       <mat-accordion>
         <mat-selection-list class=" bg-whiteLight" [multiple]="false">
-          <mat-list-option routerLink="/inicio">
-            Inicio
-          </mat-list-option>
-          <mat-list-option routerLink="#">
-            Cursos
-          </mat-list-option>
+          <mat-expansion-panel hideToggle routerLink="/inicio">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Inicio
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Cursos
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
           <mat-expansion-panel (opened)="panelOpenState = true"
           (closed)="panelOpenState = false" class="bg-whiteLight text-white">
             <mat-expansion-panel-header>
@@ -21,26 +29,28 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-selection-list [multiple]="false">
-              <mat-list-option routerLink="/profesores/lista">
-                Profesores
-              </mat-list-option>
-              <mat-list-option routerLink="/estudiantes/lista">
-                Alumnos
-              </mat-list-option>
+              <mat-expansion-panel hideToggle  routerLink="/profesores/lista">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Profesores
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+              </mat-expansion-panel>
+              <mat-expansion-panel hideToggle  routerLink="/estudiantes/lista">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Alumnos
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+              </mat-expansion-panel>
             </mat-selection-list>
           </mat-expansion-panel>
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                              (closed)="panelOpenState = false" class="bg-whiteLight text-white">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Materias
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-selection-list [multiple]="false">
-            <mat-list-option routerLink="/profesores/lista">
-              Matematica
-            </mat-list-option>
-          </mat-selection-list>
+          <mat-expansion-panel hideToggle routerLink="/materias/lista">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Materias
+              </mat-panel-title>
+            </mat-expansion-panel-header>
           </mat-expansion-panel>
         </mat-selection-list>
     </mat-accordion>

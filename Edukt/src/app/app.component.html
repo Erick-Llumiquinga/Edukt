@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav opened mode="side" >
+  <mat-sidenav opened mode="side" *ngIf="token != null">
     <app-side-nav></app-side-nav>
   </mat-sidenav>
   <router-outlet></router-outlet>

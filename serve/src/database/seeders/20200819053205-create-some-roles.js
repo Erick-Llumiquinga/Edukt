@@ -76,32 +76,32 @@ module.exports = {
           updatedAt: new Date()
         },
       ], {}),
-  
-      queryInterface.bulkInsert('profesores', [
+
+      queryInterface.bulkInsert('personas', [
         { id: 1,
-          correo: 'superAdmin@jarvis.com',
-          clave: bcrypt.hashSync('admin123456', 10),
+          nombre: 'super', 
+          apellido: 'admin', 
+          identificacion: '1750057729001', 
+          direccion: 'Malibu',
+          //birthDay: '2020/04/04',
+          correo: 'admin@jarvis.com',
+          telefono: '0987654321',
+          contactoEmergencia: '2683590',
+          idRole: 1,  
           createdAt: new Date(), 
           updatedAt: new Date()
         },
       ], {}),
   
-      queryInterface.bulkInsert('personas', [
+      queryInterface.bulkInsert('profesores', [
         { id: 1,
-          name: 'super', 
-          lastname: 'admin', 
-          identification: '1750057729001', 
-          address: 'Malibu',
-          //birthDay: '2020/04/04',
-          correo: 'admin@jarvis.com',
-          phone: '0987654321',
-          helpContact: '2683590',
-          idRole: 1,  
-          idProfesor: 1,
+          correo: 'superAdmin@jarvis.com',
+          clave: bcrypt.hashSync('admin123456', 10),
+          idPersona: 1,
           createdAt: new Date(), 
           updatedAt: new Date()
         },
-      ], {})
+      ], {}),
     ])
   },
 

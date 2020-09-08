@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Clases.init({
+    nombre: DataTypes.STRING,
     detalle: DataTypes.STRING,
     tareasRealizar: DataTypes.STRING,
   }, {

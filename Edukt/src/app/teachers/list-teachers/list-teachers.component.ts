@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../../services/data.service';
+import { Person } from '../../models/person';
+import { Teacher } from '../../models/teacher';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-teachers',
@@ -7,9 +14,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListTeachersComponent implements OnInit {
 
-  constructor() { }
+  endPoint = 'studen';
+  teachers: Person[];
+  dataSource;
+  displayedColumns: string[] = [
+    'nombre', 
+    'apellido', 
+    'identificacion', 
+    'fechaNacimiento', 
+    'correo', 
+    'telefono', 
+    'contactoEmergencia'
+  ];
+
+  constructor(private service:DataService, private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  getData = () => {
+    this.service.getData(this.endPoint)
+    .subscribe(resp => {
+      this.teachers = resp.data
+      this.dataSource = this.teachers
+    })
   }
 
 }

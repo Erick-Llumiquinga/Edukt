@@ -58,10 +58,16 @@ export class NewStudentComponent implements OnInit {
       .subscribe((resp: DataRx) => {
         if(resp.ok)
         {
-          sessionStorage.setItem('token', resp.token);
-          return this.router.navigate(['/inicio'])
+          Swal.fire({
+            icon: 'success',
+            title: 'Creado con exito',
+            showConfirmButton: false,
+            timer: 1500,
+          })
+          .then(() => {
+            return this.router.navigate(['/estudiates/lista'])
+          })
         }
-        
       },
       error => {
         Swal.fire({

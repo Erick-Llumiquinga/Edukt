@@ -26,6 +26,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { LoginComponent } from './login/login.component';
 import { NewStudentComponent } from './students/new-student/new-student.component';
@@ -37,6 +38,12 @@ import { ListTeachersComponent } from './teachers/list-teachers/list-teachers.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { NewSubjectComponent } from './subjects/new-subject/new-subject.component';
+import { EditSubjectComponent } from './subjects/edit-subject/edit-subject.component';
+import { ListSubjectComponent } from './subjects/list-subject/list-subject.component';
+import { NewClassComponent } from './classes/new-class/new-class.component';
+import { EditClassComponent } from './classes/edit-class/edit-class.component';
+import { ListClassComponent } from './classes/list-class/list-class.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +57,12 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     ListTeachersComponent,
     DashboardComponent,
     SideNavComponent,
+    NewSubjectComponent,
+    EditSubjectComponent,
+    ListSubjectComponent,
+    NewClassComponent,
+    EditClassComponent,
+    ListClassComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +86,8 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     MatSelectModule,
     NgxMatFileInputModule,
     MatCarouselModule.forRoot(),
+    MatGridListModule,
+
 
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
