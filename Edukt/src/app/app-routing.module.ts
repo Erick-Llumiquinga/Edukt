@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'profesores/lista', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./teachers/list-teachers/list-teachers.module').then(m => m.ListTeachersModule)},
   { path: 'profesores/nuevo', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./teachers/new-teacher/new-teacher.module').then(m => m.NewTeacherModule)},
   { path: 'profesores/perfil/editar', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./teachers/edit-teacher/edit-teacher.module').then(m => m.EditTeacherModule)},
+  { path: 'course', loadChildren: () => import('./course/course.module').then(m => m.CourseModule) },
 
   { path: 'materias/lista', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./subjects/list-subject/list-subject.module').then(m => m.ListSubjectModule)},
   { path: 'masterias/nuevo', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./subjects/new-subject/new-subject.module').then(m => m.NewSubjectModule)},
