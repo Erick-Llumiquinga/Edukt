@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 
 export class ListStudentsComponent implements OnInit {
 
-  endPoint = 'studen';
+  endPoint = 'estudiantes';
   students: Person[];
   dataSource;
   displayedColumns: string[] = [

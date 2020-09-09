@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CourseService } from '../services/course.service';
+import { CourseService } from '../../services/course.service';
 import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-course',
-  templateUrl: './course.component.html',
-  styleUrls: ['./course.component.scss']
+  templateUrl: './list-course.component.html',
+  styleUrls: ['./list-course.component.scss']
 })
-export class CourseComponent implements OnInit {
+export class ListCourseComponent implements OnInit {
 
   cursoss = [];
   id: string;

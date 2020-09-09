@@ -14,20 +14,21 @@ import Swal from 'sweetalert2';
 })
 export class ListTeachersComponent implements OnInit {
 
-  endPoint = 'studen';
-  teachers: Person[];
+  endPoint = 'profesores';
+  person: Person[] = [];
   displayedColumns: string[] = [
     'nombre', 
     'apellido', 
     'identificacion', 
     'fechaNacimiento', 
     'correo', 
+    'correoInst',
     'telefono', 
-    'contactoEmergencia'
-  ];
+    'contactoEmergencia',
+    'acciones'
+  ]
   dataSource;
   
-
   constructor(private service:DataService, private router:Router) { }
 
   ngOnInit(): void {
@@ -37,9 +38,18 @@ export class ListTeachersComponent implements OnInit {
   getData = () => {
     this.service.getData(this.endPoint)
     .subscribe(resp => {
-      this.teachers = resp.data
-      this.dataSource = this.teachers
+     
+      resp.data.forEach(element => {
+        element.personas.correoInst = element.correo;
+        this.person.push(element.personas)
+      });
+      
+      this.dataSource = this.person
     })
   }
 
+  selectEst = (id) =>{
+    this.router.navigate(['/profesores/perfil/editar', id]);
+  }
 }
+

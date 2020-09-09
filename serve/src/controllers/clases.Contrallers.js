@@ -12,14 +12,15 @@ async function find (req, res, next) {
     }else {
         req.Clases = clases;
         next();
-    }
+    } 
 }
 
 async function crearClase (req, res){
     try {
         await Clases.create({
+            nombre: req.body.nombre,
             detalle: req.body.detalle,
-            tareas_realizar: req.file.path
+            tareasRealizar: req.file.path
         }).then(result => {
             res.status(200).json(result);
         })

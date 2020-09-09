@@ -2,14 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Rutas = require('../middleware/rutasCursos');
 const { autentica } = require('../middleware/token');
-const { crearClase, find, verClases, eliminar, editar } = require('../controllers/clases.Contrallers');
+const { crearCurso, verCursos, verParalelo, eliminar, editar } = require('../controllers/cursos.Controllers');
 
 
-
-
-router.post('/clases', autentica, Rutas.crearCurso, crearClase);
-router.get('/clases', autentica, Rutas.verCursos, verClases)
-router.delete('/clases/:id', autentica, Rutas.eliminar, eliminar);
-router.patch('/clases/:id', autentica, Rutas.editar, editar);
+router.post('/curso', autentica, crearCurso);
+router.get('/cursos', autentica, verCursos);
+router.delete('/curso/:id', autentica, eliminar);
+router.patch('/curso/:id', autentica, editar  );
 
 module.exports = router;

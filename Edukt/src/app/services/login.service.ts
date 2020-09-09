@@ -15,6 +15,6 @@ export class LoginService {
   constructor(private http:HttpClient) {}
 
   login = (data): Observable<DataRx> => {
-    return this.http.post<DataRx>(`${this.url}/loginP`, data);
+    return this.http.post<DataRx>(`${this.url}/login`, data);
   }
 }
