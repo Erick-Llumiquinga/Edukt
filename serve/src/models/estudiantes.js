@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       Estudiantes.belongsTo(models.Personas, { as: "personas", foreignKey: "idPersona" }),
-      Estudiantes.hasOne(models.Matriculas, { as: "matriculas", foreignKey: "idMatricula" })
+      Estudiantes.belongsTo(models.Matriculas, { as: "matriculas", foreignKey: "idMatricula" })
     }
   };
   Estudiantes.init({

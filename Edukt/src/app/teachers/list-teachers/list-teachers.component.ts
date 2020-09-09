@@ -16,7 +16,6 @@ export class ListTeachersComponent implements OnInit {
 
   endPoint = 'studen';
   teachers: Person[];
-  dataSource;
   displayedColumns: string[] = [
     'nombre', 
     'apellido', 
@@ -26,10 +25,13 @@ export class ListTeachersComponent implements OnInit {
     'telefono', 
     'contactoEmergencia'
   ];
+  dataSource;
+  
 
   constructor(private service:DataService, private router:Router) { }
 
   ngOnInit(): void {
+    this.getData();
   }
 
   getData = () => {
