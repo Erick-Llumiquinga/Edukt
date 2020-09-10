@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve & ngtw watch",
-    "start:prod": "ngtw build && ng build --prod && lite-server --baseDir dist/edukt",
+    "start:prod": "ng build && ng build --prod && lite-server --baseDir dist/edukt",
     "build": "ngtw build && ng build",
     "test": "ng test",
     "lint": "ng lint",

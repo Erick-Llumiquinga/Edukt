@@ -1,8 +1,12 @@
 import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { HomeworkService } from '../services/homework.service';
+import { DataService } from '../services/data.service';
+import { Homework } from '../models/homework';
+import { Router } from '@angular/router';
 
 export interface Card {
   title: string;
@@ -80,17 +84,36 @@ export class DashboardComponent implements OnInit {
   pageSizeOptions: number[] = [2, 4, 25, 100];
   pageEvent: PageEvent;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  tareas: [];
+
+  constructor(private changeDetectorRef: ChangeDetectorRef,
+
+          private homework : HomeworkService,
+          private router : Router
+
+    ) { }
 
   ngOnInit(): void {
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
     this.obs = this.dataSource.connect();
+
+    this.homework.getTareas()
+    .subscribe(
+      (res: any) =>{
+        console.log(res);
+        this.tareas = res;
+
+      },
+
+      err => console.log(err)
+    )
+
   }
 
   ngOnDestroy() {
-    if (this.dataSource) { 
-      this.dataSource.disconnect(); 
+    if (this.dataSource) {
+      this.dataSource.disconnect();
     }
   }
 }

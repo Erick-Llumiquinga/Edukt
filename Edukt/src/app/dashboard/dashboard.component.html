@@ -2,18 +2,15 @@
   <div class="w-1/2 p-2 mt-5">
     <div class="text-gray-700   bg-whiteLight p-2">
       <div class="max-w-sm mx-auto rounded overflow-hidden shadow-lg">
-        <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2">Tareas Pendientes</div>
-          <p class="text-white text-base pt-5">
-            <a class="w-full text-center">
-              <span class="inline-block bg-purpleLight rounded-full w-full px-3 py-1 text-sm text-white 0 mr-2 mb-2">Ejemplos de Angular - Programacion - 11:am</span>
+        <div class="px-6 py-4 ">
+          <div class="font-bold text-xl mb-3">Tareas Pendientes</div>
+          <p class="text-white text-base pt-5  scrolling-touch overflow-auto h-32 ... ">
+            <a class="w-full text-center" *ngFor="let trs of tareas" >
+              <span class="inline-block bg-purpleLight rounded-full w-full px-3 py-1 text-sm text-white 0 mr-2 mb-2"
+              routerLink="/list-homework"
+              > {{trs.detalle}} - Hora-Maxima:{{trs.horaEntregada}} </span>
             </a>
-            <a class="w-full text-center">
-              <span class="inline-block bg-purpleLight rounded-full w-full px-3 py-1 text-sm text-white 0 mr-2 mb-2">Ejemplos de Angular - Programacion - 11:am</span>
-            </a>
-            <a class="w-full text-center">
-              <span class="inline-block bg-purpleLight rounded-full w-full px-3 py-1 text-sm text-white 0 mr-2 mb-2">Ejemplos de Angular - Programacion - 11:am</span>
-            </a>
+
           </p>
         </div>
       </div>
@@ -39,13 +36,13 @@
   <div class="w-full p-2 mr-1 mb-2">
     <div class="w-full flex flex-wrap p-2 bg-whiteLight mr-0">
       <div class="font-bold text-xl mb-2 p-2 w-1/2">Mis Cursos</div>
-      <div class="w-1/2"> 
+      <div class="w-1/2">
         <mat-paginator [length]="length"
           [pageSize]="pageSize"
           (page)="pageEvent = $event">
         </mat-paginator>
       </div>
-      
+
       <a class="mx-auto" *ngFor="let data of obs | async">
         <div class="text-gray-700 text-center mx-auto bg p-2">
           <div class="max-w-sm rounded overflow-hidden shadow-lg">
@@ -83,7 +80,7 @@
           </div>
         </div>
       </a>-->
-      
+
     </div>
   </div>
 </div>
