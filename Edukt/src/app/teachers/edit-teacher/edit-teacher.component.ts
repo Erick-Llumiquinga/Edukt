@@ -34,6 +34,7 @@ export class EditTeacherComponent implements OnInit {
   _form = () => {
     this.teacherForm = this.formBuilder.group({
       colorControl: this.colorControl,
+      id: ['',[Validators.required]],
       nombre: ['',[Validators.required]],
       apellido: ['',[Validators.required]],
       identificacion: ['',[Validators.required]],
@@ -54,6 +55,7 @@ export class EditTeacherComponent implements OnInit {
       this.id = params['id'];
       this.services.getSelc(this.endPoint,this.id)
       .subscribe(resp => {
+        this.teacherForm.get('id').setValue(resp.data['personas'].id);
         this.teacherForm.get('correoInst').setValue(resp.data['correo']);
         this.teacherForm.get('nombre').setValue(resp.data['personas'].nombre);
         this.teacherForm.get('apellido').setValue(resp.data['personas'].apellido);
@@ -74,7 +76,7 @@ export class EditTeacherComponent implements OnInit {
     if(!this.teacherForm.invalid)
     {
       let data = new Person();
-      data.id = this.id;
+      data.id = this.teacherForm.get('id').value;
       data.nombre = this.teacherForm.get('nombre').value;
       data.apellido = this.teacherForm.get('apellido').value;
       data.identificacion = this.teacherForm.get('identificacion').value;

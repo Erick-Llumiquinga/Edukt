@@ -1,5 +1,4 @@
-const { Curso } = require('../models/index');
-const { Paralelos } = require('../models/index');
+const { Cursos, Paralelos } = require('../models/index');
 const  fs = require('fs-extra');
 const { unlink  }  = require('fs-extra');
 const  path = require('path');
@@ -24,14 +23,23 @@ async function show ( req, res) {
 async function crearCurso (req, res) {
     try {
               
-        await Curso.create({
-            nombre_curso : req.body.nombre_curso,
-             nombre_paralelo: req.body.nombre_paralelo
-        
-
-        }).then(result => {
-            res.status(200).json(result)
-        } )
+        await Cursos.create({
+            nombre : req.body.nombre,
+            detalles: req.body.detalles
+        }).then(data => {
+            return res.status(200).json({
+                ok: true,
+                data,
+                msg: "",
+            })
+        })
+        .catch(error => {
+            return res.status(500).json({
+                ok: true,
+                data: null,
+                msg: error,
+            })
+        })
     } catch (error) {
         return res.status(400).json({
             msg: 'No se pudo crear',
@@ -42,14 +50,21 @@ async function crearCurso (req, res) {
 
 async function verCursos (req, res) {
     try {
-        const curso = await Curso.findAll(
-            {
-                
-                 attributes: ['id', 'nombre_curso', 'nombre_paralelo']
-                
-            },
-        )
-        res.json(curso);
+        const curso = await Cursos.findAll()
+        .then(data => {
+            return res.status(200).json({
+                ok: true,
+                data,
+                msg: "",
+            })
+        })
+        .catch(error => {
+            return res.status(500).json({
+                ok: true,
+                data: null,
+                msg: error,
+            })
+        });
     } catch (error) {
         return res.status(400).json({
             msg: 'No se pudo crear',
@@ -85,7 +100,7 @@ async function eliminar (req, res) {
     // })
 
     try {
-        const tarea = await Curso.destroy({
+        const tarea = await Cursos.destroy({
             where: { id: req.params.id }
         }).then(result => {
             res.status(200).json(result);

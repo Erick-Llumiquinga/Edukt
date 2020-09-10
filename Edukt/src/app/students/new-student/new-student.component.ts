@@ -74,7 +74,7 @@ export class NewStudentComponent implements OnInit {
           })
           .then(() => {
             this.studentForm.reset();
-            return this.router.navigate(['/estudiates/lista'])
+            return this.router.navigate(['/estudiantes/lista'])
           })
         }
       },

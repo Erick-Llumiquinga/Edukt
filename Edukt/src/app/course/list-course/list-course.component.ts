@@ -1,94 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
-import { CourseService } from '../../services/course.service';
-import { error } from '@angular/compiler/src/util';
+import { DataService } from '../../services/data.service';
+import { Class } from '../../models/class';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-course',
+  selector: 'app-list-course',
   templateUrl: './list-course.component.html',
   styleUrls: ['./list-course.component.scss']
 })
 export class ListCourseComponent implements OnInit {
 
-  cursoss = [];
-  id: string;
+  endPoint = 'cursos';
+  course: Class[] = [];
+  displayedColumns: string[] = [
+    'nombre', 
+    'detalles', 
+    'acciones'
+  ];
+  dataSource;
 
-
-  constructor(
-
-      private router : Router,
-      private course : CourseService
-
-   ) { }
+  constructor(private service:DataService, private router:Router) { }
 
   ngOnInit(): void {
-
-    this.course.getCurso()
-    .subscribe(
-      (res: any) => {
-        //  console.log(res[0].paralelos[0].nombre_paralelo);
-        console.log(res);
-        this.cursoss = res;
-      }
-    )
-
+   this.getData();
   }
 
-  nombre_curso : any;
-  nombre_paralelo : any;
-
-  crear(){
-    let data = {
-      "nombre_curso": this.nombre_curso,
-      "nombre_paralelo": this.nombre_paralelo
-    }
-    this.course.crearCurso(data).subscribe(
-      response => {
-        console.log('Curso creado con Exito');
-        alert('Curso creado con exito');
-        location.reload();
-      }
-    ), error => {
-      console.log(error);
-      alert('No se pudo crear el curso');
-    }
+  getData = () => {
+    this.service.getData(this.endPoint)
+    .subscribe(resp => {
+      this.course = resp.data,
+      this.dataSource = this.course
+    })
   }
 
-
-
-  delete(id: string){
-    this.course.delete(id)
-    .subscribe(
-      res => {
-        console.log(res),
-        alert('Eliminado con exito');
-        location.reload();
-      },
-      error => {
-        console.log(error);
-      alert('No se pudo eliminar el curso');
-      }
-    )
+  selectEst = (id) =>{
+    this.router.navigate(['/estudiantes/perfil/editar', id]);
   }
-
-
-  // put(nombre_curso: HTMLInputElement, nombre_paralelo: HTMLInputElement ) {
-  //   console.log(nombre_curso, nombre_paralelo);
-  //   this.course.put(this.id, nombre_curso.value, nombre_paralelo.value)
-  //   .subscribe (
-  //     res => {
-  //       console.log(res),
-  //       alert('Actualizado con exito');
-  //       location.reload();
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     alert('No se pudo actualizar el curso');
-  //     }
-  //   )
-
-  // }
-
 
 }

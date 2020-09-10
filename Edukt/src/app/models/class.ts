@@ -3,4 +3,5 @@ export class Class {
   nombre: string;
   detalles: string;
   tareasRealizar: string;
+  paralelo: string;
 }

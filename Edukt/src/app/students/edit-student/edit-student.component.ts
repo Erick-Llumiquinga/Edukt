@@ -34,6 +34,7 @@ export class EditStudentComponent implements OnInit {
   _form = () => {
     this.studentForm = this.formBuilder.group({
       colorControl: this.colorControl,
+      id: ['',[Validators.required]],
       nombre: ['',[Validators.required]],
       apellido: ['',[Validators.required]],
       identificacion: ['',[Validators.required]],
@@ -54,6 +55,8 @@ export class EditStudentComponent implements OnInit {
       this.id = params['id'];
       this.services.getSelc(this.endPoint,this.id)
       .subscribe(resp => {
+        console.log(resp.data['personas'].id)
+        this.studentForm.get('id').setValue(resp.data['personas'].id);
         this.studentForm.get('correoInst').setValue(resp.data['correo']);
         this.studentForm.get('nombre').setValue(resp.data['personas'].nombre);
         this.studentForm.get('apellido').setValue(resp.data['personas'].apellido);
@@ -74,7 +77,7 @@ export class EditStudentComponent implements OnInit {
     if(!this.studentForm.invalid)
     {
       let data = new Person();
-      data.id = this.id;
+      data.id = this.studentForm.get('id').value;
       data.nombre = this.studentForm.get('nombre').value;
       data.apellido = this.studentForm.get('apellido').value;
       data.identificacion = this.studentForm.get('identificacion').value;

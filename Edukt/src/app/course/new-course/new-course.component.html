@@ -1,1 +1,51 @@
-<p>new-course works!</p>
+<!--
+  <div class="flex w-full h-full flex-initial">
+  <div class="flex-initial w-full">
+      <div class="rounded flex overflow-hidden shadow-lg mx-auto mt-5 max-w-6xl">
+        <div class="flex-initial w-1/3">
+          <form action=""  [formGroup]="courseForm">
+            <div class="flex justify-center mt-3">
+              <img class="avatar" src="{{courseForm.get('img').value}}" alt="">
+              
+            </div>
+          </form>
+        </div>
+        <div class="flex-initial w-2/3">
+          <form action=""  [formGroup]="courseForm">
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2">Información</div>
+              <table class="example-full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Nombre</mat-label>
+                      <input matInput type="text" formControlName="nombre" placeholder="Ex. Fisica">
+                      <mat-error *ngIf="courseForm.get('nombre').hasError('required')">El nombre es necesario</mat-error>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Detalles</mat-label>
+                      <input matInput type="text" formControlName="detalles" placeholder="Ex. Es muy bonita">
+                      <mat-error *ngIf="courseForm.get('detalles').hasError('required')">El detalle es necesario</mat-error> 
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Paralelos</mat-label>
+                      <input matInput type="text" formControlName="paralelo" placeholder="Ex. A">
+                      <mat-error *ngIf="courseForm.get('paralelo').hasError('required')">El paralelo es necesario</mat-error>
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </form>
+          <div class="flex-initial w-2/4 mx-auto mb-2 bg-gray-500">
+            <button mat-flat-button class=" text-white bg-greenWeedLight hover:bg-greenWeed w-full" (click)="create()">Guardar</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+-->

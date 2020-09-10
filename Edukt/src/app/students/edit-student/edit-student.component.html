@@ -1,11 +1,11 @@
 <div class="flex w-full h-full flex-wrap bg-gray-200">
-  <h2 class="font-bold uppercase text-xl pt-6">Perfil de profesor</h2>
+  <h2 class="font-bold uppercase text-xl pt-6">Perfil de Estudiante</h2>
   <div class="flex-initial w-full">
     <div class="rounded flex overflow-hidden shadow-lg mx-auto max-w-6xl bg-whiteLight">
       <div class="w-full">
-        <form action=""  [formGroup]="teacherForm">
+        <form action=""  [formGroup]="studentForm">
           <div class="flex justify-center mt-3">
-            <img class="avatar" src="{{teacherForm.get('img').value}}" alt="">
+            <img class="avatar" src="{{studentForm.get('img').value}}" alt="">
           </div>
           <div class="flex justify-center my-3">
             <mat-form-field>
@@ -22,21 +22,21 @@
                   <mat-form-field class="example-full-width">
                     <mat-label>Nombre</mat-label>
                     <input matInput type="text" formControlName="nombre" placeholder="Ex. Pedro">
-                    <mat-error *ngIf="teacherForm.get('nombre').hasError('required')">El nombre es necesario</mat-error>
+                    <mat-error *ngIf="studentForm.get('nombre').hasError('required')">El nombre es necesario</mat-error>
                   </mat-form-field>
                 </td>
                 <td>
                   <mat-form-field class="example-full-width">
                     <mat-label>Apeliido</mat-label>
                     <input matInput type="text" formControlName="apellido" placeholder="Ex. Parker">
-                    <mat-error *ngIf="teacherForm.get('apellido').hasError('required')">El apeliido es necesario</mat-error> 
+                    <mat-error *ngIf="studentForm.get('apellido').hasError('required')">El apeliido es necesario</mat-error> 
                   </mat-form-field>
                 </td>
                 <td>
                   <mat-form-field class="example-full-width">
                     <mat-label>Identificación</mat-label>
                     <input matInput type="text" formControlName="identificacion" placeholder="Ex. 1752436521">
-                    <mat-error *ngIf="teacherForm.get('identificacion').hasError('required')">El identificación es necesario</mat-error>
+                    <mat-error *ngIf="studentForm.get('identificacion').hasError('required')">El identificación es necesario</mat-error>
                   </mat-form-field>
                 </td>
               </tr>
