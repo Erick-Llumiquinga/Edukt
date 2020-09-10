@@ -57,7 +57,6 @@ import { ListHomeworkComponent } from './homework/list-homework/list-homework.co
     ListTeachersComponent,
     DashboardComponent,
     SideNavComponent,
-    CourseComponent,
 
     NewHomeworkComponent,
 
