@@ -15,14 +15,11 @@ const routes: Routes = [
 
   { path: 'profesores/lista', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./teachers/list-teachers/list-teachers.module').then(m => m.ListTeachersModule)},
   { path: 'profesores/nuevo', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./teachers/new-teacher/new-teacher.module').then(m => m.NewTeacherModule)},
-  { path: 'profesores/perfil/editar/:id', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./teachers/edit-teacher/edit-teacher.module').then(m => m.EditTeacherModule)},
-  
-  
-  { path: 'cursos/lista', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./course/list-course/list-course.module').then(m => m.ListCourseModule) },
-
-  { path: 'materias/lista', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./subjects/list-subject/list-subject.module').then(m => m.ListSubjectModule)},
-  { path: 'masterias/nuevo', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./subjects/new-subject/new-subject.module').then(m => m.NewSubjectModule)},
-  { path: 'materias/editar/:id', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./subjects/edit-subject/edit-subject.module').then(m => m.EditSubjectModule)},
+  { path: 'profesores/perfil/editar', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./teachers/edit-teacher/edit-teacher.module').then(m => m.EditTeacherModule)},
+  { path: 'course', loadChildren: () => import('./course/course.module').then(m => m.CourseModule) },
+  { path: 'new-homework', loadChildren: () => import('./homework/new-homework/new-homework.module').then(m => m.NewHomeworkModule) },
+  { path: 'list-homework', loadChildren: () => import('./homework/list-homework/list-homework.module').then(m => m.ListHomeworkModule) }
+];
 
   { path: 'clases/lista', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./classes/list-class/list-class.module').then(m => m.ListClassModule)},
   { path: 'clases/nuevo', /*canActivate: [ TokenGuard ],*/ loadChildren: () => import('./classes/new-class/new-class.module').then(m => m.NewClassModule)},

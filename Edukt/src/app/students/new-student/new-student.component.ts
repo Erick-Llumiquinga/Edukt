@@ -60,9 +60,17 @@ export class NewStudentComponent implements OnInit {
       data.telefono = this.studentForm.get('telefono').value;
       data.contactoEmergencia = this.studentForm.get('contactoEmergencia').value;
       data.img = this.studentForm.get('img').value;
+<<<<<<< HEAD
       data.idRole = 3;
       
       this.services.postData(this.endPoint,data)
+=======
+      data.idRole = this.studentForm.get('idRole').value;
+
+
+      this.studentForm.reset();
+      this.services.postData('/person',data)
+>>>>>>> db136ed88f005cfafa91ae80416859e6de46207b
       .subscribe((resp: DataRx) => {
         if(resp.ok)
         {
@@ -77,6 +85,10 @@ export class NewStudentComponent implements OnInit {
             return this.router.navigate(['/estudiates/lista'])
           })
         }
+<<<<<<< HEAD
+
+=======
+>>>>>>> f151ffb9b337687840c15611e767434c82297f2e
       },
       error => {
         Swal.fire({

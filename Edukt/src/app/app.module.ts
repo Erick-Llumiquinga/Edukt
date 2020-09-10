@@ -42,6 +42,9 @@ import { ListCourseComponent } from './course/list-course/list-course.component'
 import { NewCourseComponent } from './course/new-course/new-course.component';
 import { EditCourseComponent } from './course/edit-course/edit-course.component';
 
+import { NewHomeworkComponent } from './homework/new-homework/new-homework.component';
+import { ListHomeworkComponent } from './homework/list-homework/list-homework.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,9 +57,11 @@ import { EditCourseComponent } from './course/edit-course/edit-course.component'
     ListTeachersComponent,
     DashboardComponent,
     SideNavComponent,
-    ListCourseComponent,
-    NewCourseComponent,
-    EditCourseComponent,
+    CourseComponent,
+
+    NewHomeworkComponent,
+
+    ListHomeworkComponent,
   ],
   imports: [
     BrowserModule,
