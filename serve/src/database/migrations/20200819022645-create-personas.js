@@ -8,29 +8,29 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      nombre: {
         type: Sequelize.STRING
       },
-      lastname: {
+      apellido: {
         type: Sequelize.STRING
       },
-      identification: {
+      identificacion: {
         type: Sequelize.STRING
       },
-      address: {
+      direccion: {
         type: Sequelize.STRING
       },
-      birthDay:{
+      fechaNacimiento:{
         allowNull: true,
         type: Sequelize.DATE
       },
       correo: {
         type: Sequelize.STRING
       },
-      phone: {
+      telefono: {
         type: Sequelize.STRING
       },
-      helpContact:{
+      contactoEmergencia:{
         type: Sequelize.STRING
       },
       img: {
@@ -40,20 +40,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'roles', 
-          key: 'id',
-        },
-      },
-      idProfesor: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'profesores', 
-          key: 'id',
-        },
-      },
-      idEstudiante: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'estudiantes', 
           key: 'id',
         },
       },

@@ -8,11 +8,11 @@ const app = require('./app'),
       app.listen(port, function () {
           console.log(`Servidor funcionando en puerto ${port}` );
 
-        // sequelize.authenticate().then(() => {
-        //   console.log("DB Conectada")
-        // })
+          sequelize.authenticate().then(() => {
+            console.log("DB Conectada")
+          })
 
-        sequelize.sync({ force:true }).then(() => {
+        /*sequelize.sync({ force:true }).then(() => {
           console.log("DB Conectada")
-        }) 
+        })*/ 
       }) 

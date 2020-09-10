@@ -24,6 +24,10 @@ export class DataService {
     return this.http.get<DataRx>(`${this.url}/${endPoint}`, this.httpOptions);
   }
 
+  getSelc = (endPoint, id):Observable<DataRx> =>{
+    return this.http.get<DataRx>(`${this.url}/${endPoint}/${id}`);
+  }
+
   postData = (endPoint, data):Observable<DataRx> => {
     return this.http.post<DataRx>(`${this.url}${endPoint}`, data,this.httpOptions)
   }

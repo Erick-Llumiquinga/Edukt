@@ -1,4 +1,5 @@
-const { Cursos } = require('../models/index');
+const { Curso } = require('../models/index');
+const { Paralelos } = require('../models/index');
 const  fs = require('fs-extra');
 const { unlink  }  = require('fs-extra');
 const  path = require('path');
@@ -20,18 +21,14 @@ async function show ( req, res) {
     
 }
 
-
 async function crearCurso (req, res) {
     try {
               
-        await Cursos.create({
+        await Curso.create({
             nombre_curso : req.body.nombre_curso,
-            paralelos: {
-                nombre_paralelo: req.body.nombre_paralelo
-            }
+             nombre_paralelo: req.body.nombre_paralelo
+        
 
-        },{
-            include : ['paralelos']
         }).then(result => {
             res.status(200).json(result)
         } )
@@ -45,17 +42,54 @@ async function crearCurso (req, res) {
 
 async function verCursos (req, res) {
     try {
-        const curso = await Cursos.findAll(
+        const curso = await Curso.findAll(
             {
                 
-                    include: {
-                        association: "paralelos",
-                        attributes: ['id', 'nombre_paralelo', 'cursoId']
-                    }
+                 attributes: ['id', 'nombre_curso', 'nombre_paralelo']
                 
             },
         )
         res.json(curso);
+    } catch (error) {
+        return res.status(400).json({
+            msg: 'No se pudo crear',
+            error
+        })
+    }
+}
+
+async function verParalelo (req, res) {
+    try {
+        const curso = await Paralelos.findAll({
+            include: {
+                association: "cursos",
+                attributes: ['nombre_curso']
+            }
+        },
+        )
+        res.json(curso);
+    } catch (error) {
+        return res.status(400).json({
+            msg: 'No se pudo crear',
+            error
+        })
+    }
+}
+
+async function eliminar (req, res) {
+
+    // req.curso.destroy().then(curso => {
+    //     res.json({
+    //         msg: "La tarea a sido elimindada"
+    //     })
+    // })
+
+    try {
+        const tarea = await Curso.destroy({
+            where: { id: req.params.id }
+        }).then(result => {
+            res.status(200).json(result);
+        })
     } catch (error) {
         return res.status(400).json({
             msg: 'No se pudo crear',
@@ -65,57 +99,34 @@ async function verCursos (req, res) {
     }
 }
 
-async function eliminar (req, res) {
-
-    req.curso.destroy().then(curso => {
-        res.json({
-            msg: "La tarea a sido elimindada"
-        })
-    })
-
-    // try {
-    //     const tarea = await Tareas.destroy({
-    //         where: { id: req.params.id }
-    //     }).then(result => {
-    //         res.status(200).json(result);
-    //     })
-    // } catch (error) {
-    //     return res.status(400).json({
-    //         msg: 'No se pudo crear',
-    //         error,
-    //         token
-    //     })
-    // }
-}
-
 async function editar (req, res){
 
-    req.curso.detalle = req.body.nombre_curso;
+    // req.curso.detalle = req.body.nombre_curso;
   
-    req.curso.save().then(curso => {
-        res.json(curso);
-    })
+    // req.curso.save().then(curso => {
+    //     res.json(curso);
+    // })
 
 
-    // try {
-    //     const id = req.params.id
+    try {
+        const id = req.params.id
       
-    //     const tarea = await Tareas.update(req.body, {
-    //         where: {
-    //             id: id
-    //         }
-    //     }).then(tarea => {
-    //         res.status(200).json(tarea);
-    //         console.log(tarea)
+        const curso = await Curso.update(req.body, {
+            where: {
+                id: id
+            }
+        })
+          res.json(curso);
+            console.log(curso)
            
-    //     })
-    // } catch (error) {
-    //     return res.status(400).json({
-    //         msg: 'No se pudo crear',
-    //         error,
-    //         token
-    //     })
-    // }
+        
+    } catch (error) {
+        return res.status(400).json({
+            msg: 'No se pudo crear',
+            error,
+            token
+        })
+    }
 }
 
 
@@ -126,5 +137,6 @@ module.exports = {
     eliminar,
     editar,
     find,
-    show
+    show,
+    verParalelo
 }

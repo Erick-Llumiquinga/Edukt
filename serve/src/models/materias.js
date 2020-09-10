@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Materias.init({
-    nombreMateria: DataTypes.STRING,
+    nombre: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Materias',

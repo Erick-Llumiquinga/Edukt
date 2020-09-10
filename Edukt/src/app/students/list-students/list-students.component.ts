@@ -15,11 +15,19 @@ import Swal from 'sweetalert2';
 
 export class ListStudentsComponent implements OnInit {
 
-  endPoint = 'persons';
+  endPoint = 'estudiantes';
   students: Person[];
-  displayedColumns: string[] = ['name', 'lastname', 'identification', 'email'];
   dataSource;
-
+  displayedColumns: string[] = [
+    'nombre', 
+    'apellido', 
+    'identificacion', 
+    'fechaNacimiento', 
+    'correo', 
+    'telefono', 
+    'contactoEmergencia'
+  ];
+  
   constructor(private service:DataService, private router:Router) { }
 
   ngOnInit(): void {

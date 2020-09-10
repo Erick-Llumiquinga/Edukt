@@ -57,6 +57,22 @@ async function verTarea (req, res) {
     }
 }
 
+async function byId(req, res) {
+    try {
+        const tarea = await Tareas.findByPk(req.params.id, {
+            
+                attributes: ['id', 'detalle', 'deber_archivo']
+            
+        })
+        res.json(tarea);
+    } catch (error) {
+        return res.status(400).json({
+            msg: 'No se pudo crear',
+            error
+        })
+    }
+}
+
 async function eliminar (req, res) {
 
     req.tarea.destroy().then(tarea => {
@@ -120,5 +136,6 @@ module.exports = {
     eliminar,
     editar,
     find,
-    show
+    show,
+    byId
 }

@@ -6,22 +6,22 @@ module.exports = (sequelize, DataTypes) => {
   class Personas extends Model {   
     static associate(models) {
       Personas.belongsTo(models.Roles, { as: "roles", foreignKey: "idRole" }),
-      Personas.hasOne(models.Profesores, { as: "profesor", foreignKey: "idProfesor"}),
-      Personas.hasOne(models.Estudiantes, { as: "estudiantes", foreignKey: "idEstudiante"}),
+      Personas.hasOne(models.Profesores, { as: "profesor", foreignKey: "idPersona"}),
+      Personas.hasOne(models.Estudiantes, { as: "estudiantes", foreignKey: "idPersona"}),
       Personas.hasMany(models.Tareas, { as: "tarea", foreignKey: "personasId" }),
       Personas.hasMany(models.Clases, { as: "clases", foreignKey: "personasId" })
     }
   }; 
 
   Personas.init({
-    name: DataTypes.STRING,
-    lastname: DataTypes.STRING,
-    identification: DataTypes.STRING,
-    address: DataTypes.STRING,
-    birthDay: DataTypes.DATE,
+    nombre: DataTypes.STRING,
+    apellido: DataTypes.STRING,
+    identificacion: DataTypes.STRING,
+    direccion: DataTypes.STRING,
+    fechaNacimiento: DataTypes.DATE,
     correo: DataTypes.STRING,
-    phone: DataTypes.STRING,
-    helpContact: DataTypes.STRING,
+    telefono: DataTypes.STRING,
+    contactoEmergencia: DataTypes.STRING,
     img: DataTypes.STRING,
   }, {
     sequelize,

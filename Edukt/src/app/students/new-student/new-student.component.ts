@@ -44,11 +44,11 @@ export class NewStudentComponent implements OnInit {
     if(!this.studentForm.invalid)
     {
       let data = new Person();
-      data.name = this.studentForm.get('name').value;
-      data.lastname = this.studentForm.get('lastname').value;
-      data.identification = this.studentForm.get('identification').value;
-      data.email = this.studentForm.get('email').value;
-      data.password = this.studentForm.get('identification').value;
+      data.nombre = this.studentForm.get('name').value;
+      data.apellido = this.studentForm.get('lastname').value;
+      data.identificacion = this.studentForm.get('identification').value;
+      data.correo = this.studentForm.get('email').value;
+      data.clave = this.studentForm.get('identification').value;
       data.img = this.studentForm.get('img').value;
       data.idRole = this.studentForm.get('idRole').value;
 
@@ -58,10 +58,20 @@ export class NewStudentComponent implements OnInit {
       .subscribe((resp: DataRx) => {
         if(resp.ok)
         {
-          sessionStorage.setItem('token', resp.token);
-          return this.router.navigate(['/inicio'])
+          Swal.fire({
+            icon: 'success',
+            title: 'Creado con exito',
+            showConfirmButton: false,
+            timer: 1500,
+          })
+          .then(() => {
+            return this.router.navigate(['/estudiates/lista'])
+          })
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f151ffb9b337687840c15611e767434c82297f2e
       },
       error => {
         Swal.fire({
