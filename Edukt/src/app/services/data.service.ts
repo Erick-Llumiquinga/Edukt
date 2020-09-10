@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse ,HttpHeaders } from '@angular/common/http'; 
+import { HttpClient, HttpResponse ,HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { DataRx } from '../models/data-rx';
 import { Observable } from 'rxjs';
@@ -25,7 +25,7 @@ export class DataService {
   }
 
   postData = (endPoint, data):Observable<DataRx> => {
-    return this.http.post<DataRx>(`${this.url}/${endPoint}`, data,this.httpOptions)
+    return this.http.post<DataRx>(`${this.url}${endPoint}`, data,this.httpOptions)
   }
 
   putData = (endPoint, data):Observable<DataRx> => {

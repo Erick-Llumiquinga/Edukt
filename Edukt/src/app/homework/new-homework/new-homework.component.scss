@@ -1,0 +1,33 @@
+.card {
+  position: relative;
+  left: 30%;
+  top: 20px;
+  width: 500px;
+  height: 200px;
+}
+
+h2 {
+  position: relative;
+  left: 20px;
+  top: 10px;
+}
+
+.avatar {
+  /* cambia estos dos valores para definir el tamaño de tu círculo */
+  height: 200px;
+  width: 200px;
+  /* los siguientes valores son independientes del tamaño del círculo */
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  background-size: 100% auto;
+}
+
+
+form{
+  position: relative;
+  top: 50px;
+  width: 800px;
+  left: 150px;
+}
+

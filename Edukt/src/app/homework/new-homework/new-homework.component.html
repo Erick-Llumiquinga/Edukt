@@ -1,0 +1,46 @@
+
+<form [formGroup]="imageForm" (ngSubmit)="onSubmit()"  >
+
+
+  <div class="row">
+    <div class="col-6" >
+      <div class="input-file">
+        <input type="file"
+                placeholder="File"
+                (change)="onFileChange($event)"
+                formControlName="file">
+         <img *ngIf="image" class="img-fluid img-thumbnail image" src="{{image}}" alt="">
+    </div>
+    </div>
+    <div class="col-6" >
+      <label for=""> Detalle de la Tarea </label>
+        <input type="text" placeholder="Detalle" formControlName="detalle" class=" form-control " >
+        <br>
+        <label for=""> Calificacion </label>
+        <input type="text" placeholder="100" formControlName="nota" class="form-control"  >
+        <br>
+
+
+        <label for=""> Tiempo de Entrega </label>
+        <input type="text" placeholder="3 horas" formControlName="horaEntrega" class="form-control" >
+        <br>
+        <label for=""> Tiempo de Entregada </label>
+        <input type="text" placeholder="23:00" formControlName="horaEntregada" class=" form-control" >
+        <br>
+    </div>
+
+
+
+    </div>
+
+
+
+  <br>
+
+  <button type="submit" class="btn btn-outline-primary btn-lg btn-block "
+    [disabled]="!imageForm.valid"
+    > Crear </button>
+
+</form>
+
+

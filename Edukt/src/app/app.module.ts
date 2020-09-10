@@ -39,6 +39,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { CourseComponent } from './course/course.component';
 
+import { NewHomeworkComponent } from './homework/new-homework/new-homework.component';
+import { ListHomeworkComponent } from './homework/list-homework/list-homework.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +55,10 @@ import { CourseComponent } from './course/course.component';
     DashboardComponent,
     SideNavComponent,
     CourseComponent,
+
+    NewHomeworkComponent,
+
+    ListHomeworkComponent,
   ],
   imports: [
     BrowserModule,

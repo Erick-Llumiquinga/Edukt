@@ -52,7 +52,7 @@ export class NewStudentComponent implements OnInit {
       data.img = this.studentForm.get('img').value;
       data.idRole = this.studentForm.get('idRole').value;
 
-      
+
       this.studentForm.reset();
       this.services.postData('/person',data)
       .subscribe((resp: DataRx) => {
@@ -61,7 +61,7 @@ export class NewStudentComponent implements OnInit {
           sessionStorage.setItem('token', resp.token);
           return this.router.navigate(['/inicio'])
         }
-        
+
       },
       error => {
         Swal.fire({
