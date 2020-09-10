@@ -11,7 +11,7 @@
             <mat-form-field>
               <ngx-mat-file-input placeholder="Foto de Perfil" (change)="onFileChange($event)">
                 <mat-icon ngxMatFileInputIcon>folder</mat-icon>
-              </ngx-mat-file-input> 
+              </ngx-mat-file-input>
             </mat-form-field>
           </div>
           <div class="px-6 py-4">
@@ -29,7 +29,11 @@
                   <mat-form-field class="example-full-width">
                     <mat-label>Apeliido</mat-label>
                     <input matInput type="text" formControlName="apellido" placeholder="Ex. Parker">
+<<<<<<< HEAD
                     <mat-error *ngIf="studentForm.get('apellido').hasError('required')">El apeliido es necesario</mat-error> 
+=======
+                    <mat-error *ngIf="studentForm.get('apellido').hasError('required')">El apeliido es necesario</mat-error>
+>>>>>>> 5d055723c3aa0362a9818cd6f8783cb0be9284e6
                   </mat-form-field>
                 </td>
                 <td>
