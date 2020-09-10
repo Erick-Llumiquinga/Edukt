@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class NewStudentComponent implements OnInit {
 
+  endPoint = 'estudiante';
   studentForm: FormGroup;
   dataStudent;
   file: any;
@@ -30,13 +31,17 @@ export class NewStudentComponent implements OnInit {
   _form = () => {
     this.studentForm = this.formBuilder.group({
       colorControl: this.colorControl,
-      name: ['',[Validators.required]],
-      lastname: ['',[Validators.required]],
-      identification: ['',[Validators.required]],
-      address: ['',[Validators.required]],
-      email: ['',[Validators.required]],
+      nombre: ['',[Validators.required]],
+      apellido: ['',[Validators.required]],
+      identificacion: ['',[Validators.required]],
+      fechaNacimiento: ['',[Validators.required]],
+      direccion: ['',[Validators.required]],
+      correo: ['',[Validators.required]],
+      correoInst: ['', [Validators.required]],
+      telefono: ['',[Validators.required]],
+      contactoEmergencia: ['',[Validators.required]],
+      codigoMatricula: ['',[Validators.required]],
       img: ['../../../assets/img/userIcon.png',[Validators.required]],
-      idRole: [3, []],
     })
   }
 
@@ -44,17 +49,20 @@ export class NewStudentComponent implements OnInit {
     if(!this.studentForm.invalid)
     {
       let data = new Person();
-      data.nombre = this.studentForm.get('name').value;
-      data.apellido = this.studentForm.get('lastname').value;
-      data.identificacion = this.studentForm.get('identification').value;
-      data.correo = this.studentForm.get('email').value;
-      data.clave = this.studentForm.get('identification').value;
+      data.nombre = this.studentForm.get('nombre').value;
+      data.apellido = this.studentForm.get('apellido').value;
+      data.identificacion = this.studentForm.get('identificacion').value;
+      data.fechaNacimiento = this.studentForm.get('fechaNacimiento').value;
+      data.direccion = this.studentForm.get('direccion').value;
+      data.correo = this.studentForm.get('correo').value;
+      data.correoInst = this.studentForm.get('correoInst').value;
+      data.clave = this.studentForm.get('identificacion').value;
+      data.telefono = this.studentForm.get('telefono').value;
+      data.contactoEmergencia = this.studentForm.get('contactoEmergencia').value;
       data.img = this.studentForm.get('img').value;
-      data.idRole = this.studentForm.get('idRole').value;
-
+      data.idRole = 3;
       
-      this.studentForm.reset();
-      this.services.postData('/person',data)
+      this.services.postData(this.endPoint,data)
       .subscribe((resp: DataRx) => {
         if(resp.ok)
         {
@@ -65,6 +73,7 @@ export class NewStudentComponent implements OnInit {
             timer: 1500,
           })
           .then(() => {
+            this.studentForm.reset();
             return this.router.navigate(['/estudiates/lista'])
           })
         }

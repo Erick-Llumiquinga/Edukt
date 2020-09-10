@@ -33,7 +33,7 @@ export class DataService {
   }
 
   putData = (endPoint, data):Observable<DataRx> => {
-    return this.http.patch<DataRx>(`${this.url}/${endPoint}`, data,this.httpOptions);
+    return this.http.patch<DataRx>(`${this.url}/${endPoint}/${data.id}`, data,this.httpOptions);
   }
 
   deleteData = (endPoint, id):Observable<DataRx> => {

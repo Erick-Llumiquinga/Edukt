@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { Person } from '../../models/person';
-import { Teacher } from '../../models/teacher';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import Swal from 'sweetalert2';
@@ -38,17 +37,17 @@ export class ListTeachersComponent implements OnInit {
   getData = () => {
     this.service.getData(this.endPoint)
     .subscribe(resp => {
-     
       resp.data.forEach(element => {
         element.personas.correoInst = element.correo;
+        element.personas.idProfesor = element.id;
         this.person.push(element.personas)
       });
-      
       this.dataSource = this.person
     })
   }
 
   selectEst = (id) =>{
+    console.log(id);
     this.router.navigate(['/profesores/perfil/editar', id]);
   }
 }

@@ -24,14 +24,9 @@
                 <tr>
                   <td>
                     <mat-form-field class="example-full-width">
-                      <mat-label>Nombre</mat-label>
-                      <input matInput type="text" formControlName="name" placeholder="Ex. Pedro">
-                    </mat-form-field>
-                  </td>
-                  <td>
-                    <mat-form-field class="example-full-width">
-                      <mat-label>Apeliido</mat-label>
-                      <input matInput type="text" formControlName="lastname" placeholder="Ex. Parker">
+                      <mat-label>Codigo matricula</mat-label>
+                      <input matInput type="text" formControlName="codigoMatricula" placeholder="Ex. SDC000">
+                      <mat-error *ngIf="studentForm.get('codigoMatricula').hasError('required')">El nombre es necesario</mat-error>
                     </mat-form-field>
                   </td>
                 </tr>
@@ -40,14 +35,61 @@
                 <tr>
                   <td>
                     <mat-form-field class="example-full-width">
+                      <mat-label>Nombre</mat-label>
+                      <input matInput type="text" formControlName="nombre" placeholder="Ex. Pedro">
+                      <mat-error *ngIf="studentForm.get('nombre').hasError('required')">El nombre es necesario</mat-error>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Apeliido</mat-label>
+                      <input matInput type="text" formControlName="apellido" placeholder="Ex. Parker">
+                      <mat-error *ngIf="studentForm.get('apellido').hasError('required')">El apeliido es necesario</mat-error> 
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
                       <mat-label>Identificación</mat-label>
-                      <input matInput type="text" maxlength="10" formControlName="identification" placeholder="Ex. 178945612">
+                      <input matInput type="text" formControlName="identificacion" placeholder="Ex. 1752436521">
+                      <mat-error *ngIf="studentForm.get('identificacion').hasError('required')">El identificación es necesario</mat-error>
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+              <table class="example-full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Fecha de nacimiento</mat-label>
+                      <input matInput type="date" formControlName="fechaNacimiento" placeholder="12/12/1998">
                     </mat-form-field>
                   </td>
                   <td>
                     <mat-form-field class="example-full-width">
                       <mat-label>Correo</mat-label>
-                      <input matInput type="text" formControlName="email" placeholder="Ex. user@gmail.com">
+                      <input matInput type="text" formControlName="correo" placeholder="Ex. user@gmail.com">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Correo institucional</mat-label>
+                      <input matInput type="text" formControlName="correoInst" placeholder="Ex. profesor@gmail.com">
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+              <table class="example-full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Telefóno</mat-label>
+                      <input matInput type="text" formControlName="telefono" placeholder="Ex. 0987654321">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Contacto de emergencial</mat-label>
+                      <input matInput type="text" formControlName="contactoEmergencia" placeholder="Ex. 0963258741">
                     </mat-form-field>
                   </td>
                 </tr>
@@ -55,7 +97,7 @@
               <p>
                 <mat-form-field class="example-full-width">
                   <mat-label>Dirección</mat-label>
-                  <input matInput type="text" formControlName="address" placeholder="Ex. Av. 10 de Agosto y Pátria">
+                  <input matInput type="text" formControlName="direccion" placeholder="Ex. Av. 10 de Agosto y Pátria">
                 </mat-form-field>
               </p>
             </div>

@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class EditTeacherComponent implements OnInit {
 
+  id: any;
   endPoint = 'profesor';
   teacherForm: FormGroup;
   dataTeacher;
@@ -36,25 +37,34 @@ export class EditTeacherComponent implements OnInit {
       nombre: ['',[Validators.required]],
       apellido: ['',[Validators.required]],
       identificacion: ['',[Validators.required]],
+      fechaNacimiento: ['',[Validators.required]],
       direccion: ['',[Validators.required]],
       correo: ['',[Validators.required]],
       correoInst: ['', [Validators.required]],
       telefono: ['',[Validators.required]],
-      contactoEmergebcia: ['',[Validators.required]],
+      contactoEmergencia: ['',[Validators.required]],
       img: ['../../../assets/img/userIcon.png',[Validators.required]],
-      idRole: [2,[Validators.required]],
+      idProfesor: [0,[Validators.required]]
     })
   }
 
   get = () => 
   {
     this.activeRouter.params.subscribe(params => {
-      this.teacherForm.get('id').setValue(params['id']);
-      this.services.getSelc(this.endPoint, this.teacherForm.get('id').value)
-      .subscribe(res => {
-          
-          console.log(res.data)
-        },
+      this.id = params['id'];
+      this.services.getSelc(this.endPoint,this.id)
+      .subscribe(resp => {
+        this.teacherForm.get('correoInst').setValue(resp.data['correo']);
+        this.teacherForm.get('nombre').setValue(resp.data['personas'].nombre);
+        this.teacherForm.get('apellido').setValue(resp.data['personas'].apellido);
+        this.teacherForm.get('identificacion').setValue(resp.data['personas'].identificacion);
+        this.teacherForm.get('fechaNacimiento').setValue(resp.data['personas'].fechaNacimiento);
+        this.teacherForm.get('direccion').setValue(resp.data['personas'].direccion);
+        this.teacherForm.get('correo').setValue(resp.data['personas'].correo);
+        this.teacherForm.get('telefono').setValue(resp.data['personas'].telefono);
+        this.teacherForm.get('contactoEmergencia').setValue(resp.data['personas'].contactoEmergencia);
+        this.teacherForm.get('idProfesor').setValue(resp.data['id']);
+      },
         error => console.log(error)
       )
     })
@@ -64,33 +74,32 @@ export class EditTeacherComponent implements OnInit {
     if(!this.teacherForm.invalid)
     {
       let data = new Person();
+      data.id = this.id;
       data.nombre = this.teacherForm.get('nombre').value;
       data.apellido = this.teacherForm.get('apellido').value;
       data.identificacion = this.teacherForm.get('identificacion').value;
+      data.fechaNacimiento = this.teacherForm.get('fechaNacimiento').value;
       data.direccion = this.teacherForm.get('direccion').value;
       data.correo = this.teacherForm.get('correo').value;
-      data.correo = this.teacherForm.get('correo').value;
       data.correoInst = this.teacherForm.get('correoInst').value;
-      data.clave = this.teacherForm.get('identification').value;
-      data.correo = this.teacherForm.get('direccion').value;
-      data.clave = this.teacherForm.get('identification').value;
+      data.telefono = this.teacherForm.get('telefono').value;
+      data.contactoEmergencia = this.teacherForm.get('contactoEmergencia').value;
       data.img = this.teacherForm.get('img').value;
-      data.idRole = this.teacherForm.get('idRole').value;
+      data.idProfesor = this.teacherForm.get('idProfesor').value;
 
-      
-      this.teacherForm.reset();
-      this.services.postData('/person',data)
+
+      this.services.putData(this.endPoint,data)
       .subscribe((resp: DataRx) => {
         if(resp.ok)
         {
           Swal.fire({
             icon: 'success',
-            title: 'Creado con exito',
+            title: 'Actualizado con exito',
             showConfirmButton: false,
             timer: 1500,
           })
           .then(() => {
-            return this.router.navigate(['/estudiates/lista'])
+            return this.router.navigate(['/profesores/lista'])
           })
         }
       },
@@ -103,6 +112,9 @@ export class EditTeacherComponent implements OnInit {
         })
         return console.log(error)
       });
+    }
+    else {
+      console.log('no valida')
     }
   }
 

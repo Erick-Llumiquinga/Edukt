@@ -12,4 +12,7 @@ export class Person {
   contactoEmergencia: string;
   img: string;
   idRole: number;
+  idProfesor: number;
+  idEstudiante: number;
+  idMatricula: number;
 }

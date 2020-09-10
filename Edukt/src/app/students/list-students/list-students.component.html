@@ -3,32 +3,61 @@
       <div class="flex-col overflow-hidden w-full">
           <h2 class="font-bold uppercase text-xl mt-8 ml-4">Lista Estudiantes</h2>
           <div class="flex justify-end mt-5">
-              <button class="bg-greenWeedLight mr-4 hover:bg-greenWeed text-white font-bold py-2 px-4 rounded-full" routerLink="/estudiantes/nuevo">Crear Nuevo</button> 
+              <button class="bg-greenWeedLight mr-4 hover:bg-greenWeed text-white font-bold py-2 px-4 rounded-full" routerLink="/profesores/nuevo">Crear Nuevo</button> 
           </div>
           <div class="mt-4 mx-4">
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
           
-              <!-- Name Column -->
-              <ng-container matColumnDef="name">
+              <ng-container matColumnDef="nombre">
                 <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
               </ng-container>
             
-              <!-- Weight Column -->
-              <ng-container matColumnDef="lastname">
+              <ng-container matColumnDef="apellido">
                 <th mat-header-cell *matHeaderCellDef> Apellido </th>
-                <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
               </ng-container>
             
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="identification">
-                <th mat-header-cell *matHeaderCellDef> identificación </th>
-                <td mat-cell *matCellDef="let element"> {{element.identification}} </td>
+              <ng-container matColumnDef="identificacion">
+                <th mat-header-cell *matHeaderCellDef> Identificación </th>
+                <td mat-cell *matCellDef="let element"> {{element.identificacion}} </td>
               </ng-container>
 
-              <ng-container matColumnDef="email">
+              <ng-container matColumnDef="fechaNacimiento">
+                <th mat-header-cell *matHeaderCellDef> Fecha de nacimiento </th>
+                <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="correo">
                 <th mat-header-cell *matHeaderCellDef> Correo </th>
-                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="correoInst">
+                <th mat-header-cell *matHeaderCellDef> Correo institucional</th>
+                <td mat-cell *matCellDef="let element"> {{element.correoInst}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="telefono">
+                <th mat-header-cell *matHeaderCellDef> Telefono </th>
+                <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="contactoEmergencia">
+                <th mat-header-cell *matHeaderCellDef> Contacto de emergencia </th>
+                <td mat-cell *matCellDef="let element"> {{element.contactoEmergencia}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button color="primary" (click)="selectEst(element.idEstudiante)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
               </ng-container>
             
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -38,5 +67,6 @@
       </div>
   </div>
 </div>
+
 
 

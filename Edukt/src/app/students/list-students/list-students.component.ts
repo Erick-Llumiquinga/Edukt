@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 export class ListStudentsComponent implements OnInit {
 
   endPoint = 'estudiantes';
-  students: Person[];
+  students: Person[] = [];
   dataSource;
   displayedColumns: string[] = [
     'nombre', 
@@ -24,8 +24,10 @@ export class ListStudentsComponent implements OnInit {
     'identificacion', 
     'fechaNacimiento', 
     'correo', 
+    'correoInst',
     'telefono', 
-    'contactoEmergencia'
+    'contactoEmergencia',
+    'acciones'
   ];
   
   constructor(private service:DataService, private router:Router) { }
@@ -37,9 +39,18 @@ export class ListStudentsComponent implements OnInit {
   getData = () => {
     this.service.getData(this.endPoint)
     .subscribe(resp => {
-      this.students = resp.data
+      resp.data.forEach(element => {
+        element.personas.correoInst = element.correo;
+        element.personas.idEstudiante = element.id;
+        this.students.push(element.personas)
+      });
       this.dataSource = this.students
+      console.log(this.dataSource)
     })
+  }
+
+  selectEst = (id) =>{
+    this.router.navigate(['/estudiantes/perfil/editar', id]);
   }
 
 }

@@ -9,9 +9,10 @@ const authConfig = require('../config/auth');
 async function crearProf (req, res){
     let clave = bcrypt.hashSync(req.body.clave, Number.parseInt(authConfig.rounds));
     try {
-        await Profesor.create(
+        console.log(req.body);
+        await Profesores.create(
             {
-                correoInst: req.body.correo,
+                correo: req.body.correoInst,
                 clave: clave,
                 personas : {
                     nombre: req.body.nombre,
@@ -22,22 +23,29 @@ async function crearProf (req, res){
                     correo: req.body.correo,
                     telefono: req.body.telefono,
                     contactoEmergencia: req.body.contactoEmergencia,
-                    img: req.file.path
+                    //img: req.file.path,
+                    idRole: req.body.idRole
                 }
             },{
                 include: ['personas']
             }
-        ).then (person => {
-
-            res.status(200).json({
-                msg: "Creado con exito",
-                person: person
+        ).then(data => {
+            return res.status(200).json({
+                ok: true,
+                data,
+                msg: "",
             })
-
+        })
+        .catch(error => {
+            return res.status(500).json({
+                ok: true,
+                data: null,
+                msg: error,
+            })
         })
     } catch (error) {
         return res.status(400).json({
-            msg: 'No se pudo crear',
+            msg: error,
             error
         })
     }
@@ -58,7 +66,7 @@ async function verAll (req, res){
                     'correo', 
                     'telefono', 
                     'contactoEmergencia'
-                 ]
+                ]
                }]
             }
         ).then(data => {
@@ -87,29 +95,38 @@ async function verAll (req, res){
 
 async function verOne ( req, res ){
     try {
-        const person = await Profesor.findByPk(req.params.id,
+        const person = await Profesores.findByPk(req.params.id,
             {
-                attributes : [ 'id', 'correoInst' ],
+                attributes : [ 'id', 'correo' ],
                 include: [{
-                 association: "personas",
-                 attributes: [ 'id', 'nombre', 'apellido' ]
-                 
-                }]
+                    association: "personas"
+                   }]
+            }
+         ).then(data => {
+                return res.status(200).json({
+                    ok: true,
+                    data,
+                    msg: "",
+                })
             })
-              console.log(person);
-              res.json(person);
+            .catch(error => {
+                return res.status(500).json({
+                    ok: true,
+                    data: null,
+                    msg: error,
+                })
+            })
     } catch (error) {
         return res.status(400).json({
-            msg: 'No se pudo crear',
-            error
-            
+            msg: 'No se pudo actualizar',
+            error 
         })
     }
 }
 
 async function deleteProf ( req, res ) {
     try {
-        const person = await Profesor.destroy({
+        const person = await Profesores.destroy({
             where: { id : req.params.id }
         })
         console.log("Eliminado con exito", person);
@@ -125,12 +142,46 @@ async function deleteProf ( req, res ) {
 async function putProf ( req, res ) {
     try {
     
-        const person = await Profesor.update(req.body, {
+        await Personas.update(req.body, {
             where: { id: req.params.id }
+        }).then(data => {
+           putData(req.body, res)
         })
-        console.log("Actualizado con exito", person);
-        res.json(person);
+        .catch(error => {
+            return res.status(500).json({
+                ok: true,
+                data: null,
+                msg: error,
+            })
+        })
 
+    } catch (error) {
+        return res.status(400).json({
+            msg: 'No se pudo crear',
+            error
+        })
+    }
+}
+
+async function putData ( data, res ) {
+    try {
+        let correo = data.correoInst;
+        await Profesores.update({correo}, {
+            where: { id: data.idProfesor }
+        }).then(data => {
+            return res.status(200).json({
+                ok: true,
+                data,
+                msg: "",
+            })
+        })
+        .catch(error => {
+            return res.status(500).json({
+                ok: true,
+                data: null,
+                msg: error,
+            })
+        })
     } catch (error) {
         return res.status(400).json({
             msg: 'No se pudo crear',

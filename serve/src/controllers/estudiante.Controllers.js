@@ -1,4 +1,4 @@
-const { Estudiante  } = require('../models/index');
+const { Estudiantes, Personas  } = require('../models/index');
 
 
 const  bcrypt = require ('bcrypt');
@@ -9,9 +9,9 @@ const authConfig = require('../config/auth');
 async function crearEstu (req, res){
     let clave = bcrypt.hashSync(req.body.clave, Number.parseInt(authConfig.rounds));
     try {
-        await Estudiante.create(
+        await Estudiantes.create(
             {
-                correoInst: req.body.correo,
+                correo: req.body.correoInst,
                 clave: clave,
                 personas : {
                     nombre: req.body.nombre,
@@ -22,18 +22,28 @@ async function crearEstu (req, res){
                     correo: req.body.correo,
                     telefono: req.body.telefono,
                     contactoEmergencia: req.body.contactoEmergencia,
-                    img: req.file.path
+                    //img: req.file.path
+                    idRole: req.body.idRole,
+                },
+                matriculas:{
+                    codigoMatricula: req.body.codigoMatricula
                 }
             },{
-                include: ['personas']
+                include: ['personas','matriculas']
             }
-        ).then (person => {
-
-            res.status(200).json({
-                msg: "Creado con exito",
-                person: person
+        ).then(data => {
+            return res.status(200).json({
+                ok: true,
+                data,
+                msg: "",
             })
-
+        })
+        .catch(error => {
+            return res.status(500).json({
+                ok: true,
+                data: null,
+                msg: error,
+            })
         })
     } catch (error) {
         return res.status(400).json({
@@ -45,18 +55,37 @@ async function crearEstu (req, res){
 
 async function verAll (req, res){
     try {
-        const person = await Estudiante.findAll(
+        const person = await Estudiantes.findAll(
             {
-               attributes : [ 'id', 'correoInst' ],
-               include: [{
-                association: "personas",
-                attributes: [ 'id', 'nombre', 'apellido' ]
-                
-               }]
+                attributes : [ 'id', 'correo' ],
+                include: [{
+                 association: "personas",
+                 attributes: [ 
+                     'nombre', 
+                     'apellido', 
+                     'identificacion', 
+                     'fechaNacimiento', 
+                     'correo', 
+                     'telefono', 
+                     'contactoEmergencia'
+                 ]
+                }]
             }
         )
-        console.log(person);
-        res.json(person);
+        .then(data => {
+            return res.status(200).json({
+                ok: true,
+                data,
+                msg: "",
+            })
+        })
+        .catch(error => {
+            return res.status(500).json({
+                ok: true,
+                data: null,
+                msg: error,
+            })
+        })
     } catch (error) {
         return res.status(400).json({
             msg: 'No se pudo crear',
@@ -65,21 +94,30 @@ async function verAll (req, res){
         })
     }
 }
-
 
 async function verOne ( req, res ){
     try {
-        const person = await Estudiante.findByPk(req.params.id,
+        const person = await Estudiantes.findByPk(req.params.id,
             {
-                attributes : [ 'id', 'correoInst' ],
+                attributes : [ 'id', 'correo' ],
                 include: [{
-                 association: "personas",
-                 attributes: [ 'id', 'nombre', 'apellido' ]
-                 
+                 association: "personas"
                 }]
             })
-              console.log(person);
-              res.json(person);
+            .then(data => {
+                return res.status(200).json({
+                    ok: true,
+                    data,
+                    msg: "",
+                })
+            })
+            .catch(error => {
+                return res.status(500).json({
+                    ok: true,
+                    data: null,
+                    msg: error,
+                })
+            })
     } catch (error) {
         return res.status(400).json({
             msg: 'No se pudo crear',
@@ -89,10 +127,9 @@ async function verOne ( req, res ){
     }
 }
 
-
 async function deleteEstu ( req, res ) {
     try {
-        const person = await Estudiante.destroy({
+        const person = await Estudiantes.destroy({
             where: { id : req.params.id }
         })
         console.log("Eliminado con exito", person);
@@ -108,11 +145,18 @@ async function deleteEstu ( req, res ) {
 async function putEstu ( req, res ) {
     try {
     
-        const person = await Estudiante.update(req.body, {
+        const person = await Personas.update(req.body, {
             where: { id: req.params.id }
-        })
-        console.log("Actualizado con exito", person);
-        res.json(person);
+        }).then(data => {
+            putData(req.body, res)
+         })
+         .catch(error => {
+             return res.status(500).json({
+                 ok: true,
+                 data: null,
+                 msg: error,
+             })
+         })
 
     } catch (error) {
         return res.status(400).json({
@@ -121,6 +165,34 @@ async function putEstu ( req, res ) {
         })
     }
 }
+
+async function putData ( data, res ) {
+    try {
+        let correo = data.correoInst;
+        await Estudiantes.update({correo}, {
+            where: { id: data.idEstudiante }
+        }).then(data => {
+            return res.status(200).json({
+                ok: true,
+                data,
+                msg: "",
+            })
+        })
+        .catch(error => {
+            return res.status(500).json({
+                ok: true,
+                data: null,
+                msg: error,
+            })
+        })
+    } catch (error) {
+        return res.status(400).json({
+            msg: 'No se pudo crear',
+            error
+        })
+    }
+}
+
 
 module.exports = {
     crearEstu,
